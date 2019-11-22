@@ -1,0 +1,41 @@
+Current test readout:
+Test 1: IsEmpty returning true for empty Queue: ACCEPT
+Test 2: Check if is empty returns false for non empty Queue: ACCEPT
+Test 3: Pushing value to empty Queue produces right value: ACCEPT
+Test 4: Push value to empty Queue twice is first value produced in front of Queue: FAIL
+Test 5: Push various values. See if front value popped is first pushed for all pushes.: FAIL
+Test 6: Push various values. See if back value is seen by peek for and fails if so: FAIL
+Test 7: Pop Empty Queue. Error?: ACCEPT
+Test 8: Pop Queue of size 1 twice. Error?: ACCEPT
+Test 9: Push value to empty Queue, pop value. Is empty?: ACCEPT
+Test 10: Peek front of empty Queue. Error?: ACCEPT
+Test 11: Returns false if it appears to act as a stack though peeking pushing and popping various states: FAIL
+
+Known errors:
+1. Documentation lists dequeue with a return value, it instead has return type of void.
+
+
+
+Current likely possibilities:
+1. Implemented Queue as a stack. Test 11.
+{
+  certian combinations of the following can produce this behavior
+  1.1 peekFront is looking at back of Queue. Test 6,5,4
+  &&
+  1.2 dequeue is popping the back instead of the front. Test 6
+  ||
+  1.3 enqueue is pushing to front of Queue rather to the back. Test 6,5
+}
+
+
+Unable to unit test:
+1. Cannot see if memory is being properly deallocated as I am unfamiliar with how
+this would be done in a unit test.
+
+Likely correctly functioning code:
+1. Is empty seems to work for all tests involving push and pop.
+2. Push does push a value to the Queue, cannot prove where
+3. Pop does remove a value from the Queue and throws errors.
+4. Peek throws error correctly; however, cannot confirm where it is looking.
+5. Given isEmpty's behavior, I want to say that the constructor works correctly
+6. dequeue throws correct error.
